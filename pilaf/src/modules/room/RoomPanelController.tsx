@@ -5,7 +5,7 @@ import { ActivityIndicator, Text, View } from "react-native";
 import Toast from "react-native-toast-message";
 import { TitledHeader } from "../../components/header/TitledHeader";
 import { colors, h4, paragraph } from "../../constants/dogeStyle";
-import { useCurrentRoomStore } from "../../global-stores/useCurrentRoomStore";
+import { useCurrentRoomIdStore } from "../../global-stores/useCurrentRoomIdStore";
 import { isUuid } from "../../lib/isUuid";
 import { useTypeSafeQuery } from "../../shared-hooks/useTypeSafeQuery";
 
@@ -28,15 +28,15 @@ const placeHolder = (
 export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
   roomId,
 }) => {
-  const { currentRoom, setCurrentRoom } = useCurrentRoomStore();
+  const { currentRoomId, setCurrentRoomId } = useCurrentRoomIdStore();
   const { data } = useTypeSafeQuery(
-    ["joinRoomAndGetInfo", currentRoom?.id || ""],
+    ["joinRoomAndGetInfo", currentRoomId || ""],
     {
       refetchOnMount: "always",
       enabled: isUuid(roomId),
       onSuccess: ((d: JoinRoomAndGetInfoResponse | { error: string }) => {
         if (!("error" in d)) {
-          setCurrentRoom(() => d.room);
+          setCurrentRoomId(() => d.room.id);
         }
       }) as any,
     },
@@ -60,21 +60,21 @@ export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
     return <View />;
   }
 
-  if (!currentRoom) {
+  if (!currentRoomId) {
     // return null;
     return placeHolder;
   }
 
-  if (currentRoom.id !== roomId) {
+  if (currentRoomId !== roomId) {
     return placeHolder;
   }
 
-  const roomCreator = data?.users.find((x) => x.id === currentRoom.creatorId);
+  const roomCreator = data.users.find((x) => x.id === data.room.creatorId);
   //return placeHolder;
   return (
     <View style={{ flex: 1, backgroundColor: colors.primary900 }}>
-      <TitledHeader title={currentRoom.name} showBackButton={true} />
-      <Text style={{ ...paragraph }}>{currentRoom.description}</Text>
+      <TitledHeader title={data.room.name} showBackButton={true} />
+      <Text style={{ ...paragraph }}>{data.room.description}</Text>
       <Text style={{ ...paragraph }}>{roomCreator.username}</Text>
       <Text style={{ ...paragraph }}>Waiting for design information</Text>
       <Text style={{ ...paragraph }}>{roomId}</Text>
