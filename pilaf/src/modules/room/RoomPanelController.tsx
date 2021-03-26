@@ -1,14 +1,16 @@
 import { JoinRoomAndGetInfoResponse } from "@dogehouse/kebab";
 import React, { useEffect } from "react";
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, Button, Text, View } from "react-native";
 // import { ErrorToast } from "../../ui/ErrorToast";
 import Toast from "react-native-toast-message";
 import { TitledHeader } from "../../components/header/TitledHeader";
 import { colors, h4, paragraph } from "../../constants/dogeStyle";
 import { useCurrentRoomIdStore } from "../../global-stores/useCurrentRoomIdStore";
 import { isUuid } from "../../lib/isUuid";
+import { useTypeSafeMutation } from "../../shared-hooks/useTypeSafeMutation";
 import { useTypeSafeQuery } from "../../shared-hooks/useTypeSafeQuery";
-
+import { useNavigation } from "@react-navigation/core";
+import { useMuteStore } from "../../global-stores/useMuteStore";
 interface RoomPanelControllerProps {
   roomId?: string | undefined;
 }
@@ -28,9 +30,13 @@ const placeHolder = (
 export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
   roomId,
 }) => {
+  const { mutateAsync: leaveRoom } = useTypeSafeMutation("leaveRoom");
+  const navigation = useNavigation();
   const { currentRoomId, setCurrentRoomId } = useCurrentRoomIdStore();
-  const { data } = useTypeSafeQuery(
-    ["joinRoomAndGetInfo", currentRoomId || ""],
+  const setInternalMute = useMuteStore((s) => s.setInternalMute);
+  const muted = useMuteStore((s) => s.muted);
+  const { data, isLoading } = useTypeSafeQuery(
+    ["joinRoomAndGetInfo", roomId || ""],
     {
       refetchOnMount: "always",
       enabled: isUuid(roomId),
@@ -42,31 +48,29 @@ export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
     },
     [roomId]
   );
-  if (!data) {
-    // @todo add error handling
-    console.log("return firsst");
+
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+    if (!data) {
+      setCurrentRoomId(null);
+      navigation.navigate("Home");
+      return;
+    }
+    if ("error" in data) {
+      setCurrentRoomId(null);
+      //showErrorToast(data.error);
+      navigation.navigate("Home");
+    }
+  }, [data, isLoading, navigation.navigate, setCurrentRoomId]);
+
+  if (isLoading || !currentRoomId) {
     return placeHolder;
   }
 
-  // @todo start using error codes
-  if ("error" in data) {
-    // @todo replace with real design
-    useEffect(() => {
-      Toast.show({
-        type: "error",
-        text1: "Something went wrong",
-      });
-    }, []);
-    return <View />;
-  }
-
-  if (!currentRoomId) {
-    // return null;
-    return placeHolder;
-  }
-
-  if (currentRoomId !== roomId) {
-    return placeHolder;
+  if (!data || "error" in data) {
+    return null;
   }
 
   const roomCreator = data.users.find((x) => x.id === data.room.creatorId);
@@ -78,6 +82,21 @@ export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
       <Text style={{ ...paragraph }}>{roomCreator.username}</Text>
       <Text style={{ ...paragraph }}>Waiting for design information</Text>
       <Text style={{ ...paragraph }}>{roomId}</Text>
+
+      <Button
+        title={"leave the room"}
+        onPress={() => {
+          leaveRoom([]);
+          navigation.navigate("Home");
+        }}
+      />
+
+      <Button
+        title={"mute"}
+        onPress={() => {
+          setInternalMute(!muted);
+        }}
+      />
     </View>
   );
 };

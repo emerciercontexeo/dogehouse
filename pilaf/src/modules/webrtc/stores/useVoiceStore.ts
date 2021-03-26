@@ -4,9 +4,6 @@ import create from "zustand";
 import { combine } from "zustand/middleware";
 
 export const getDevice = async () => {
-  // console.log("$$$$$$$$$$$$$$$$$$$");
-  // const userMedia = await navigator.mediaDevices.getUserMedia({ audio: true });
-  // console.log(userMedia);
   try {
     let handlerName = detectDevice();
     if (!handlerName) {
@@ -15,7 +12,6 @@ export const getDevice = async () => {
       );
       handlerName = "Chrome74";
     }
-    console.log(handlerName);
     return new Device({ handlerName });
   } catch {
     return null;

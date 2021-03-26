@@ -36,12 +36,6 @@ export const WebRtcApp: React.FC<App2Props> = () => {
   const { setCurrentRoomId } = useCurrentRoomIdStore();
   const initialLoad = useRef(true);
 
-  console.log("***********");
-  console.log(conn);
-  console.log(mic);
-  console.log(micId);
-  console.log(initialLoad);
-  console.log("***********");
   useEffect(() => {
     if (micId && !initialLoad.current) {
       sendVoice();
@@ -80,7 +74,6 @@ export const WebRtcApp: React.FC<App2Props> = () => {
       // @todo fix
       conn.addListener<any>("you_left_room", (d) => {
         // assumes you don't rejoin the same room really quickly before websocket fires
-        console.log("you_left_room");
         setCurrentRoomId((id) => {
           if (id === d.roomId) {
             return null;
@@ -88,18 +81,18 @@ export const WebRtcApp: React.FC<App2Props> = () => {
           return id;
         });
         closeVoiceConnections(d.roomId);
+        InCallManager.stop();
       }),
       conn.addListener<any>("new-peer-speaker", async (d) => {
-        console.log("new-peer-speaker");
         const { roomId, recvTransport } = useVoiceStore.getState();
         if (recvTransport && roomId === d.roomId) {
           await consumeAudio(d.consumerParameters, d.peerId);
         } else {
           consumerQueue.current = [...consumerQueue.current, { roomId, d }];
         }
+        InCallManager.start({ media: "audio" });
       }),
       conn.addListener<any>("you-are-now-a-speaker", async (d) => {
-        console.log("you-are-now-a-speaker");
         if (d.roomId !== useVoiceStore.getState().roomId) {
           return;
         }
@@ -110,6 +103,7 @@ export const WebRtcApp: React.FC<App2Props> = () => {
           console.log(err);
           return;
         }
+        InCallManager.start({ media: "audio" });
         console.log("sending voice");
         try {
           await sendVoice();
@@ -118,10 +112,9 @@ export const WebRtcApp: React.FC<App2Props> = () => {
         }
       }),
       conn.addListener<any>("you-joined-as-peer", async (d) => {
-        console.log("you-joined-as-peer");
         closeVoiceConnections(null);
         useVoiceStore.getState().set({ roomId: d.roomId });
-        // setStatus("connected-listener");
+
         consumerQueue.current = [];
         console.log("creating a device");
         try {
@@ -136,10 +129,10 @@ export const WebRtcApp: React.FC<App2Props> = () => {
           console.log("error creating recv transport | ", err);
           return;
         }
+        InCallManager.start({ media: "audio" });
         receiveVoice(conn, () => flushConsumerQueue(d.roomId));
       }),
       conn.addListener<any>("you-joined-as-speaker", async (d) => {
-        console.log("you-joined-as-speaker");
         closeVoiceConnections(null);
         useVoiceStore.getState().set({ roomId: d.roomId });
         // setStatus("connected-speaker");
@@ -165,6 +158,7 @@ export const WebRtcApp: React.FC<App2Props> = () => {
           return;
         }
         await createTransport(conn, d.roomId, "recv", d.recvTransportOptions);
+        InCallManager.start({ media: "audio" });
         receiveVoice(conn, () => flushConsumerQueue(d.roomId));
       }),
     ];
@@ -176,13 +170,6 @@ export const WebRtcApp: React.FC<App2Props> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conn]);
 
-  console.log("InCall start");
-  InCallManager.start({ media: "audio" });
-
-  return (
-    <>
-      <AudioRender />
-      <ActiveSpeakerListener />
-    </>
-  );
+  return <>{/* <AudioRender />
+      <ActiveSpeakerListener /> */}</>;
 };
