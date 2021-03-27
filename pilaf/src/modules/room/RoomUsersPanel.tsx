@@ -12,14 +12,18 @@ export const RoomUsersPanel: React.FC<RoomUsersPanelProps> = (props) => {
   );
   return (
     <View>
-      <Text style={{ ...h4, marginBottom: 20 }}>Speaker</Text>
+      <Text style={{ ...h4, marginBottom: 20 }}>
+        Speakers ({speakers.length})
+      </Text>
       <View style={styles.avatarsContainer}>{speakers}</View>
       {askingToSpeak.length ? (
         <Text style={{ ...h4, marginBottom: 20 }}>Asking to speak</Text>
       ) : null}
       <View style={styles.avatarsContainer}>{askingToSpeak}</View>
       {listeners.length ? (
-        <Text style={{ ...h4, marginBottom: 20 }}>Listeners</Text>
+        <Text style={{ ...h4, marginBottom: 20 }}>
+          Listeners ({listeners.length})
+        </Text>
       ) : null}
       <View style={styles.avatarsContainer}>{listeners}</View>
     </View>

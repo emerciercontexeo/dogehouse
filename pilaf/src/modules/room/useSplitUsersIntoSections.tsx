@@ -5,6 +5,7 @@ import {
   RoomUser,
 } from "@dogehouse/kebab";
 import React, { useContext } from "react";
+import { RoomAvatar } from "../../components/avatars/RoomAvatar";
 import { SingleUserAvatar } from "../../components/avatars/SingleUserAvatar";
 import { useMuteStore } from "../../global-stores/useMuteStore";
 import { useConn } from "../../shared-hooks/useConn";
@@ -41,10 +42,11 @@ export const useSplitUsersIntoSections = ({
 
     // for (let i = 0; i < 50; i++) {
     arr.push(
-      <SingleUserAvatar
+      <RoomAvatar
         key={u.id}
         src={{ uri: u.avatarUrl }}
-        size={"sm"}
+        muted={isMuted}
+        username={u.displayName}
         style={{ marginRight: 10, marginBottom: 10 }}
       />
     );

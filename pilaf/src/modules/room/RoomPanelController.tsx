@@ -42,7 +42,6 @@ export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
   const { data, isLoading } = useTypeSafeQuery(
     ["joinRoomAndGetInfo", roomId || ""],
     {
-      refetchInterval: 100,
       enabled: isUuid(roomId),
       onSuccess: ((d: JoinRoomAndGetInfoResponse | { error: string }) => {
         if (!("error" in d)) {
@@ -86,7 +85,7 @@ export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
         style={styles.scrollView}
         contentContainerStyle={styles.avatarsContainer}
       >
-        <RoomUsersPanel {...data} />
+        <RoomUsersPanel {...data} style={styles.avatar} />
       </ScrollView>
 
       <Button
