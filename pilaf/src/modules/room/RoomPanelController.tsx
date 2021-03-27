@@ -1,8 +1,13 @@
 import { JoinRoomAndGetInfoResponse } from "@dogehouse/kebab";
 import React, { useEffect } from "react";
-import { ActivityIndicator, Button, Text, View } from "react-native";
-// import { ErrorToast } from "../../ui/ErrorToast";
-import Toast from "react-native-toast-message";
+import {
+  ActivityIndicator,
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { TitledHeader } from "../../components/header/TitledHeader";
 import { colors, h4, paragraph } from "../../constants/dogeStyle";
 import { useCurrentRoomIdStore } from "../../global-stores/useCurrentRoomIdStore";
@@ -11,6 +16,7 @@ import { useTypeSafeMutation } from "../../shared-hooks/useTypeSafeMutation";
 import { useTypeSafeQuery } from "../../shared-hooks/useTypeSafeQuery";
 import { useNavigation } from "@react-navigation/core";
 import { useMuteStore } from "../../global-stores/useMuteStore";
+import { RoomUsersPanel } from "./RoomUsersPanel";
 interface RoomPanelControllerProps {
   roomId?: string | undefined;
 }
@@ -33,12 +39,10 @@ export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
   const { mutateAsync: leaveRoom } = useTypeSafeMutation("leaveRoom");
   const navigation = useNavigation();
   const { currentRoomId, setCurrentRoomId } = useCurrentRoomIdStore();
-  const setInternalMute = useMuteStore((s) => s.setInternalMute);
-  const muted = useMuteStore((s) => s.muted);
   const { data, isLoading } = useTypeSafeQuery(
     ["joinRoomAndGetInfo", roomId || ""],
     {
-      refetchOnMount: "always",
+      refetchInterval: 100,
       enabled: isUuid(roomId),
       onSuccess: ((d: JoinRoomAndGetInfoResponse | { error: string }) => {
         if (!("error" in d)) {
@@ -74,14 +78,16 @@ export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
   }
 
   const roomCreator = data.users.find((x) => x.id === data.room.creatorId);
-  //return placeHolder;
+
   return (
     <View style={{ flex: 1, backgroundColor: colors.primary900 }}>
       <TitledHeader title={data.room.name} showBackButton={true} />
-      <Text style={{ ...paragraph }}>{data.room.description}</Text>
-      <Text style={{ ...paragraph }}>{roomCreator.username}</Text>
-      <Text style={{ ...paragraph }}>Waiting for design information</Text>
-      <Text style={{ ...paragraph }}>{roomId}</Text>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.avatarsContainer}
+      >
+        <RoomUsersPanel {...data} />
+      </ScrollView>
 
       <Button
         title={"leave the room"}
@@ -90,13 +96,22 @@ export const RoomPanelController: React.FC<RoomPanelControllerProps> = ({
           navigation.navigate("Home");
         }}
       />
-
-      <Button
-        title={"mute"}
-        onPress={() => {
-          setInternalMute(!muted);
-        }}
-      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  scrollView: {
+    padding: 20,
+    flex: 1,
+  },
+  avatarsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+  },
+  avatar: {
+    marginRight: 10,
+    marginBottom: 10,
+  },
+});

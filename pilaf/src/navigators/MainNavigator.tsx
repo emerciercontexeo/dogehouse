@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { colors } from "../constants/dogeStyle";
+import { RoomController } from "../components/roomController/RoomController";
+import { colors, radius } from "../constants/dogeStyle";
 import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
 import { WebSocketProvider } from "../modules/ws/WebSocketProvider";
 import { HelpPage } from "../pages/HelpPage";
@@ -35,6 +36,16 @@ export const MainNavigator = () => {
   return (
     <WebSocketProvider shouldConnect={true}>
       <WaitForWsAndAuth>
+        <RoomController
+          style={{
+            position: "absolute",
+            backgroundColor: colors.primary200,
+            borderRadius: radius.m,
+            bottom: 90,
+            right: 20,
+            zIndex: 10,
+          }}
+        />
         <Stack.Navigator
           screenOptions={{
             headerShown: false,

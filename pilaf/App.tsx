@@ -21,6 +21,7 @@ import { useSoundEffectStore } from "./src/modules/sound-effect/useSoundEffectSt
 import { registerGlobals } from "react-native-webrtc";
 import InCallManager from "react-native-incall-manager";
 import { useVoiceStore } from "./src/modules/webrtc/stores/useVoiceStore";
+import { navigationRef } from "./src/navigators/RootNavigation";
 
 const App: React.FC = () => {
   registerGlobals();
@@ -62,7 +63,7 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           <StatusBar barStyle="light-content" />
           <RootNavigator />
           <Toast ref={(ref) => Toast.setRef(ref)} />
