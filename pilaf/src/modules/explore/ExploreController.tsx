@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import { colors } from "../constants/dogeStyle";
-import { useConn } from "../shared-hooks/useConn";
+import { colors } from "../../constants/dogeStyle";
+import { useConn } from "../../shared-hooks/useConn";
 
 export const ExploreController: React.FC = () => {
   const conn = useConn();

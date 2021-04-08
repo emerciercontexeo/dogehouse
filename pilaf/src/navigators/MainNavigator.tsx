@@ -1,15 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { MinimizedRoomCard } from "../components/minimizedRoomCard/MinimizedRoomCard";
-import { colors, radius } from "../constants/dogeStyle";
-import { useCurrentRoomIdStore } from "../global-stores/useCurrentRoomIdStore";
+import { Platform } from "react-native";
 import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
-
-import { RoomSearchPage } from "../modules/room/RoomSearchPage";
-
-import MinimizedRoomCardController from "../modules/dashboard/MinimizedRoomCardController";
-
-import { WebSocketProvider } from "../modules/ws/WebSocketProvider";
+import MinimizedRoomCardController from "../modules/feed/MinimizedRoomCardController";
 import { HelpPage } from "../pages/HelpPage";
 import { LanguagePage } from "../pages/LanguagePage";
 import { MainPage } from "../pages/MainPage";
@@ -21,8 +14,6 @@ import { RoomPage } from "../pages/RoomPage";
 import { SearchPage } from "../pages/SearchPage";
 import { SettingsPage } from "../pages/SettingsPage";
 import { WalletPage } from "../pages/WalletPage";
-import { MainWsHandlerProvider } from "../shared-hooks/useMainWsHandler";
-import { Platform } from "react-native";
 
 export type RootStackParamList = {
   Main: undefined;

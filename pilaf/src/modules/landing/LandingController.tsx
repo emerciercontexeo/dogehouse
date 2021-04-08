@@ -8,9 +8,9 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { SignInButton } from "../components/buttons/SignInButton";
-import { colors, h3, small } from "../constants/dogeStyle";
-import { useSaveTokensFromQueryParams } from "../modules/auth/useSaveTokensFromQueryParams";
+import { SignInButton } from "../../components/buttons/SignInButton";
+import { colors, h3, small } from "../../constants/dogeStyle";
+import { useSaveTokensFromQueryParams } from "../auth/useSaveTokensFromQueryParams";
 
 export const LandingController: React.FC = () => {
   useSaveTokensFromQueryParams();
@@ -31,7 +31,7 @@ export const LandingController: React.FC = () => {
           }}
         >
           <Image
-            source={require("../assets/images/Logo.png")}
+            source={require("../../assets/images/Logo.png")}
             style={{ width: "80%", aspectRatio: 168 / 40, height: undefined }}
           />
         </View>
@@ -78,19 +78,19 @@ export const LandingController: React.FC = () => {
         >
           <TouchableOpacity>
             <Image
-              source={require("../assets/images/github.png")}
+              source={require("../../assets/images/github.png")}
               style={{ tintColor: colors.text }}
             />
           </TouchableOpacity>
           <TouchableOpacity>
             <Image
-              source={require("../assets/images/twitter.png")}
+              source={require("../../assets/images/twitter.png")}
               style={{ tintColor: colors.text }}
             />
           </TouchableOpacity>
           <TouchableOpacity>
             <Image
-              source={require("../assets/images/discord.png")}
+              source={require("../../assets/images/discord.png")}
               style={{ tintColor: colors.text }}
             />
           </TouchableOpacity>
