@@ -1,5 +1,5 @@
 import React from "react";
-import * as RootNavigation from "../../navigators/RootNavigation";
+import * as RootNavigation from "../../navigation/RootNavigation";
 import { MinimizedRoomCard } from "../../components/minimizedRoomCard/MinimizedRoomCard";
 import { useCurrentRoomIdStore } from "../../global-stores/useCurrentRoomIdStore";
 import { useMuteStore } from "../../global-stores/useMuteStore";
