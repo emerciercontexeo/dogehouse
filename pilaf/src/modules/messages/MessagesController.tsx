@@ -1,8 +1,8 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { TitledHeader } from "../components/header/TitledHeader";
-import { MessageElement } from "../components/MessageElement";
-import { colors } from "../constants/dogeStyle";
+import { TitledHeader } from "../../components/header/TitledHeader";
+import { MessageElement } from "../../components/MessageElement";
+import { colors } from "../../constants/dogeStyle";
 
 const messageMocks = [
   {
@@ -36,7 +36,7 @@ const messageMocks = [
 
 const userMocks = {
   username: "DrMadTurkey",
-  avatar: require("../assets/images/100.png"),
+  avatar: require("../../assets/images/100.png"),
   isOnline: true,
 };
 

@@ -1,28 +1,20 @@
-import {
-  RouteProp,
-  useFocusEffect,
-  useNavigation,
-} from "@react-navigation/native";
-import React, { useCallback, useEffect, useRef } from "react";
-import { Platform, StyleSheet, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { TitledHeader } from "../components/header/TitledHeader";
-import { colors } from "../constants/dogeStyle";
-import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
-import { RoomPanelController } from "../modules/room/RoomPanelController";
-import { useOnRoomPage } from "../modules/room/useOnRoomPage";
-import { UserPreviewModalProvider } from "../modules/room/UserPreviewModalProvider";
-import { RootStackParamList } from "../navigators/MainNavigator";
-import { RoomNavigator } from "../navigators/RoomNavigator";
-import BottomSheet from "reanimated-bottom-sheet";
-import { RoomChat } from "../modules/room/chat/RoomChat";
-import { useTypeSafeQuery } from "../shared-hooks/useTypeSafeQuery";
 import { JoinRoomAndGetInfoResponse } from "@dogehouse/kebab";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import React, { useCallback, useEffect, useRef } from "react";
+import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BottomSheet from "reanimated-bottom-sheet";
 import { validate as uuidValidate } from "uuid";
-
-import { useCurrentRoomIdStore } from "../global-stores/useCurrentRoomIdStore";
-import { Spinner } from "../components/Spinner";
-import { useWrappedConn } from "../shared-hooks/useConn";
+import { TitledHeader } from "../../components/header/TitledHeader";
+import { Spinner } from "../../components/Spinner";
+import { colors } from "../../constants/dogeStyle";
+import { useCurrentRoomIdStore } from "../../global-stores/useCurrentRoomIdStore";
+import { RoomNavigator } from "../../navigators/RoomNavigator";
+import { useTypeSafeQuery } from "../../shared-hooks/useTypeSafeQuery";
+import { WaitForWsAndAuth } from "../auth/WaitForWsAndAuth";
+import { RoomChat } from "./chat/RoomChat";
+import { useOnRoomPage } from "./useOnRoomPage";
+import { UserPreviewModalProvider } from "./UserPreviewModalProvider";
 
 const placeHolder = (
   <View

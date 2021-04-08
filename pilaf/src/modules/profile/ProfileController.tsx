@@ -1,9 +1,9 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { TitledHeader } from "../components/header/TitledHeader";
-import { colors, fontFamily } from "../constants/dogeStyle";
-import { useTokenStore } from "../modules/auth/useTokenStore";
+import { TitledHeader } from "../../components/header/TitledHeader";
+import { colors, fontFamily } from "../../constants/dogeStyle";
+import { useTokenStore } from "../auth/useTokenStore";
 
 export const ProfileController: React.FC = () => {
   const setTokens = useTokenStore((s) => s.setTokens);

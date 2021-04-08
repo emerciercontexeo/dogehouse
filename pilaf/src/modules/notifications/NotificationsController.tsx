@@ -1,10 +1,10 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text } from "react-native";
-import { TitledHeader } from "../components/header/TitledHeader";
-import { FollowNotification } from "../components/notifications/FollowNotification";
-import { LiveNotification } from "../components/notifications/LiveNotification";
-import { NewRoomNotification } from "../components/notifications/NewRoomNotification";
-import { colors, h4 } from "../constants/dogeStyle";
+import { TitledHeader } from "../../components/header/TitledHeader";
+import { FollowNotification } from "../../components/notifications/FollowNotification";
+import { LiveNotification } from "../../components/notifications/LiveNotification";
+import { NewRoomNotification } from "../../components/notifications/NewRoomNotification";
+import { colors, h4 } from "../../constants/dogeStyle";
 
 export const NotificationsController: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ export const NotificationsController: React.FC = () => {
         />
         <FollowNotification
           username={"DrMadTurkey"}
-          userAvatarSrc={require("../assets/images/100.png")}
+          userAvatarSrc={require("../../assets/images/100.png")}
           time={"now"}
           isOnline={true}
           following={true}
@@ -34,7 +34,7 @@ export const NotificationsController: React.FC = () => {
         />
         <FollowNotification
           username={"DrMadTurkey"}
-          userAvatarSrc={require("../assets/images/100.png")}
+          userAvatarSrc={require("../../assets/images/100.png")}
           time={"now"}
           isOnline={true}
           following={false}
@@ -42,7 +42,7 @@ export const NotificationsController: React.FC = () => {
         />
         <FollowNotification
           username={"DrMadTurkey"}
-          userAvatarSrc={require("../assets/images/100.png")}
+          userAvatarSrc={require("../../assets/images/100.png")}
           time={"now"}
           isOnline={true}
           following={true}
@@ -50,7 +50,7 @@ export const NotificationsController: React.FC = () => {
         />
         <FollowNotification
           username={"DrMadTurkey"}
-          userAvatarSrc={require("../assets/images/100.png")}
+          userAvatarSrc={require("../../assets/images/100.png")}
           time={"now"}
           isOnline={true}
           following={true}
