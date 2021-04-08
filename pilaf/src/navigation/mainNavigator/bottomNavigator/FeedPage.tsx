@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { colors, h3 } from "../constants/dogeStyle";
-import { FeedController } from "../modules/feed/FeedController";
+import { colors, h3 } from "../../../constants/dogeStyle";
+import { FeedController } from "../../../modules/feed/FeedController";
 
 export const FeedPage: React.FC = () => {
   return (

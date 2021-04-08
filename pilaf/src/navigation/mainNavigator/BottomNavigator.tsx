@@ -3,10 +3,10 @@ import React from "react";
 import { Image, Platform } from "react-native";
 import { CreateRoomButton } from "../../components/bottomBar/CreateRoomButton";
 import { colors } from "../../constants/dogeStyle";
-import { FeedPage } from "../../pages/FeedPage";
-import { ExplorePage } from "../../pages/ExplorePage";
-import { FollowingPage } from "../../pages/FollowingPage";
-import { SchedulePage } from "../../pages/SchedulePage";
+import { FeedPage } from "./bottomNavigator/FeedPage";
+import { ExplorePage } from "./bottomNavigator/ExplorePage";
+import { FollowingPage } from "./bottomNavigator/FollowingPage";
+import { SchedulePage } from "./bottomNavigator/SchedulePage";
 const Tab = createBottomTabNavigator();
 
 const EmptyComponent: React.FC = () => {

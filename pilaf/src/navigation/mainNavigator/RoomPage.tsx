@@ -1,7 +1,7 @@
 import { RouteProp } from "@react-navigation/native";
 import React from "react";
-import { RootStackParamList } from "../navigation/MainNavigator";
-import { RoomController } from "../modules/room/RoomController";
+import { RootStackParamList } from "../MainNavigator";
+import { RoomController } from "../../modules/room/RoomController";
 
 type RoomPageRouteProp = RouteProp<RootStackParamList, "Room">;
 

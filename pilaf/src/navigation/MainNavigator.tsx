@@ -3,17 +3,17 @@ import React from "react";
 import { Platform } from "react-native";
 import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
 import MinimizedRoomCardController from "../modules/feed/MinimizedRoomCardController";
-import { HelpPage } from "../pages/HelpPage";
-import { LanguagesPage } from "../pages/LanguagesPage";
-import { MainPage } from "../pages/MainPage";
-import { MessagesPage } from "../pages/MessagesPage";
-import { NotificationsPage } from "../pages/NotificationsPage";
-import { ProfilePage } from "../pages/ProfilePage";
-import { ReportBugPage } from "../pages/ReportBugPage";
-import { RoomPage } from "../pages/RoomPage";
-import { SearchPage } from "../pages/SearchPage";
-import { SettingsPage } from "../pages/SettingsPage";
-import { WalletPage } from "../pages/WalletPage";
+import { HelpPage } from "./mainNavigator/HelpPage";
+import { LanguagesPage } from "./mainNavigator/LanguagesPage";
+import { MainPage } from "./mainNavigator/MainPage";
+import { MessagesPage } from "./mainNavigator/MessagesPage";
+import { NotificationsPage } from "./mainNavigator/NotificationsPage";
+import { ProfilePage } from "./mainNavigator/ProfilePage";
+import { ReportBugPage } from "./mainNavigator/ReportBugPage";
+import { RoomPage } from "./mainNavigator/RoomPage";
+import { SearchPage } from "./mainNavigator/SearchPage";
+import { SettingsPage } from "./mainNavigator/SettingsPage";
+import { WalletPage } from "./mainNavigator/WalletPage";
 
 export type RootStackParamList = {
   Main: undefined;
