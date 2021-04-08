@@ -5,9 +5,9 @@ import { FeaturedRoomCard } from "../components/FeaturedRoomCard";
 import { RoomCard } from "../components/RoomCard";
 import { Tag } from "../components/Tag";
 import { colors, h3, smallBold } from "../constants/dogeStyle";
-import { FeedController } from "../modules/dashboard/FeedController";
+import { FeedController } from "../pageControllers/FeedController";
 
-export const DashboardPage: React.FC = () => {
+export const FeedPage: React.FC = () => {
   return (
     <ScrollView style={styles.container}>
       <FeedController />

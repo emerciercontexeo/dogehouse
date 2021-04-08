@@ -1,21 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { TitledHeader } from "../components/header/TitledHeader";
-import { colors } from "../constants/dogeStyle";
+import { SettingsController } from "../pageControllers/SettingsController";
 
 export const SettingsPage: React.FC = () => {
-  return (
-    <>
-      <TitledHeader title={"Settings"} showBackButton={true} />
-      <View style={styles.container}></View>
-    </>
-  );
+  return <SettingsController />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: colors.primary900,
-  },
-});

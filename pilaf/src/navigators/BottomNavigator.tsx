@@ -3,7 +3,7 @@ import React from "react";
 import { Image, Platform } from "react-native";
 import { CreateRoomButton } from "../components/bottomBar/CreateRoomButton";
 import { colors } from "../constants/dogeStyle";
-import { DashboardPage } from "../pages/DashboardPage";
+import { FeedPage } from "../pages/FeedPage";
 import { ExplorePage } from "../pages/ExplorePage";
 import { FollowingPage } from "../pages/FollowingPage";
 import { SchedulePage } from "../pages/SchedulePage";
@@ -45,7 +45,7 @@ export const BottomNavigator: React.FC = () => {
           showLabel: false,
         }}
       >
-        <Tab.Screen name="Home" component={DashboardPage} />
+        <Tab.Screen name="Home" component={FeedPage} />
         <Tab.Screen name="Schedule" component={SchedulePage} />
         <Tab.Screen
           name="Create"
