@@ -5,9 +5,8 @@ import { RoomCard } from "../../components/RoomCard";
 import { useCurrentRoomIdStore } from "../../global-stores/useCurrentRoomIdStore";
 import { useTypeSafePrefetch } from "../../shared-hooks/useTypeSafePrefetch";
 import { useTypeSafeQuery } from "../../shared-hooks/useTypeSafeQuery";
-import { useRoomChatStore } from "../room/chat/useRoomChatStore";
-import { useSoundEffectStore } from "../sound-effect/useSoundEffectStore";
-import { WebSocketContext } from "../ws/WebSocketProvider";
+import { useRoomChatStore } from "../../modules/room/chat/useRoomChatStore";
+import { WebSocketContext } from "../../modules/ws/WebSocketProvider";
 
 interface FeedControllerProps {}
 

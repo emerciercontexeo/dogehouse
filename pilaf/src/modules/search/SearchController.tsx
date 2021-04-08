@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { SearchHeader } from "../components/header/SearchHeader";
-import { RoomSearchResult } from "../components/search/RoomSearchResult";
-import { SearchHistoryResult } from "../components/search/SearchHistoryResult";
-import { SearchHistoryResultList } from "../components/search/SearchHistoryResultList";
-import { UserSearchResult } from "../components/search/UserSearchResult";
-import { colors } from "../constants/dogeStyle";
+import { SearchHeader } from "../../components/header/SearchHeader";
+import { RoomSearchResult } from "../../components/search/RoomSearchResult";
+import { SearchHistoryResult } from "../../components/search/SearchHistoryResult";
+import { SearchHistoryResultList } from "../../components/search/SearchHistoryResultList";
+import { UserSearchResult } from "../../components/search/UserSearchResult";
+import { colors } from "../../constants/dogeStyle";
 
 const searchMocks = [
   {
@@ -89,7 +89,7 @@ export const SearchController: React.FC = () => {
               isOnline={true}
               userName={"The Real Anthony"}
               userLink={"@anthonytheone"}
-              userAvatarSrc={require("../assets/images/100.png")}
+              userAvatarSrc={require("../../assets/images/100.png")}
             />
           </ScrollView>
         )}

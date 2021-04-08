@@ -1,5 +1,5 @@
 import React from "react";
-import { SettingsController } from "../pageControllers/SettingsController";
+import { SettingsController } from "../modules/settings/SettingsController";
 
 export const SettingsPage: React.FC = () => {
   return <SettingsController />;

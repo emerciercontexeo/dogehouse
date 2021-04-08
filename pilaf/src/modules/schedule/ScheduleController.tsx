@@ -4,11 +4,11 @@ import { ScrollView, StyleSheet, Text } from "react-native";
 import {
   ScheduledRoomSummaryCardProps,
   UpcomingRoomCard,
-} from "../components/UpcomingRoomCard";
-import { colors, h3 } from "../constants/dogeStyle";
+} from "../../components/UpcomingRoomCard";
+import { colors, h3 } from "../../constants/dogeStyle";
 
 const today = new Date();
-const src = require("../assets/images/100.png");
+const src = require("../../assets/images/100.png");
 const upcomingRoomsMock: ScheduledRoomSummaryCardProps[] = [
   {
     id: "1",

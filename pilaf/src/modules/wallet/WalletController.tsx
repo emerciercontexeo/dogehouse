@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { TitledHeader } from "../components/header/TitledHeader";
-import { colors } from "../constants/dogeStyle";
+import { TitledHeader } from "../../components/header/TitledHeader";
+import { colors } from "../../constants/dogeStyle";
 
-export const LanguagesController: React.FC = () => {
+export const WalletController: React.FC = () => {
   return (
     <>
-      <TitledHeader title={"Languages"} showBackButton={true} />
+      <TitledHeader title={"Wallet"} showBackButton={true} />
       <View style={styles.container}></View>
     </>
   );

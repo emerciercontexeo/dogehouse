@@ -4,7 +4,7 @@ import { Platform } from "react-native";
 import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
 import MinimizedRoomCardController from "../modules/feed/MinimizedRoomCardController";
 import { HelpPage } from "../pages/HelpPage";
-import { LanguagePage } from "../pages/LanguagePage";
+import { LanguagesPage } from "../pages/LanguagesPage";
 import { MainPage } from "../pages/MainPage";
 import { MessagesPage } from "../pages/MessagesPage";
 import { NotificationsPage } from "../pages/NotificationsPage";
@@ -64,7 +64,7 @@ export const MainNavigator = () => {
         <Stack.Screen name="Profile" component={ProfilePage} />
         <Stack.Screen name="Settings" component={SettingsPage} />
         <Stack.Screen name="Wallet" component={WalletPage} />
-        <Stack.Screen name="Language" component={LanguagePage} />
+        <Stack.Screen name="Language" component={LanguagesPage} />
         <Stack.Screen name="Help" component={HelpPage} />
         <Stack.Screen name="ReportBug" component={ReportBugPage} />
         <Stack.Screen name="Room" component={RoomPage} />

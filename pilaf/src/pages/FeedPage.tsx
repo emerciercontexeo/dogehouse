@@ -1,11 +1,7 @@
 import React from "react";
-
-import { ScrollView, StyleSheet, Text } from "react-native";
-import { FeaturedRoomCard } from "../components/FeaturedRoomCard";
-import { RoomCard } from "../components/RoomCard";
-import { Tag } from "../components/Tag";
-import { colors, h3, smallBold } from "../constants/dogeStyle";
-import { FeedController } from "../pageControllers/FeedController";
+import { ScrollView, StyleSheet } from "react-native";
+import { colors, h3 } from "../constants/dogeStyle";
+import { FeedController } from "../modules/feed/FeedController";
 
 export const FeedPage: React.FC = () => {
   return (
