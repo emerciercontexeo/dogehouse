@@ -9,7 +9,7 @@ import { TitledHeader } from "../../components/header/TitledHeader";
 import { Spinner } from "../../components/Spinner";
 import { colors } from "../../constants/dogeStyle";
 import { useCurrentRoomIdStore } from "../../global-stores/useCurrentRoomIdStore";
-import { RoomNavigator } from "../../navigation/RoomNavigator";
+import { RoomNavigator } from "../../navigation/mainNavigator/RoomNavigator";
 import { useTypeSafeQuery } from "../../shared-hooks/useTypeSafeQuery";
 import { WaitForWsAndAuth } from "../auth/WaitForWsAndAuth";
 import { RoomChat } from "./chat/RoomChat";

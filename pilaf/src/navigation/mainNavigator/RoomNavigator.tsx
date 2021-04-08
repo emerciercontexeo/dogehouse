@@ -2,12 +2,12 @@ import { JoinRoomAndGetInfoResponse, Room } from "@dogehouse/kebab";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { Platform } from "react-native";
-import { UserPreview } from "../components/UserPreview";
-import { WaitForWsAndAuth } from "../modules/auth/WaitForWsAndAuth";
-import { RoomChatMessage } from "../modules/room/chat/useRoomChatStore";
-import { InviteRoomPage } from "../modules/room/InviteRoomPage";
-import { RoomDescriptionPage } from "../modules/room/RoomDescriptionPage";
-import { RoomPanelController } from "../modules/room/RoomPanelController";
+import { UserPreview } from "../../components/UserPreview";
+import { WaitForWsAndAuth } from "../../modules/auth/WaitForWsAndAuth";
+import { RoomChatMessage } from "../../modules/room/chat/useRoomChatStore";
+import { InviteRoomPage } from "../../modules/room/InviteRoomPage";
+import { RoomDescriptionPage } from "../../modules/room/RoomDescriptionPage";
+import { RoomPanelController } from "../../modules/room/RoomPanelController";
 
 export type RoomStackParamList = {
   RoomMain: { data: JoinRoomAndGetInfoResponse };

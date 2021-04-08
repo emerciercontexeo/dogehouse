@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Image, Platform } from "react-native";
-import { CreateRoomButton } from "../components/bottomBar/CreateRoomButton";
-import { colors } from "../constants/dogeStyle";
-import { FeedPage } from "../pages/FeedPage";
-import { ExplorePage } from "../pages/ExplorePage";
-import { FollowingPage } from "../pages/FollowingPage";
-import { SchedulePage } from "../pages/SchedulePage";
+import { CreateRoomButton } from "../../components/bottomBar/CreateRoomButton";
+import { colors } from "../../constants/dogeStyle";
+import { FeedPage } from "../../pages/FeedPage";
+import { ExplorePage } from "../../pages/ExplorePage";
+import { FollowingPage } from "../../pages/FollowingPage";
+import { SchedulePage } from "../../pages/SchedulePage";
 const Tab = createBottomTabNavigator();
 
 const EmptyComponent: React.FC = () => {
@@ -19,15 +19,15 @@ export const BottomNavigator: React.FC = () => {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            let icon = require("../assets/images/bottomBar/plus.png");
+            let icon = require("../../assets/images/bottomBar/plus.png");
             if (route.name === "Home") {
-              icon = require("../assets/images/bottomBar/sm-solid-home.png");
+              icon = require("../../assets/images/bottomBar/sm-solid-home.png");
             } else if (route.name === "Schedule") {
-              icon = require("../assets/images/bottomBar/ios-calendar.png");
+              icon = require("../../assets/images/bottomBar/ios-calendar.png");
             } else if (route.name === "Following") {
-              icon = require("../assets/images/bottomBar/sm-solid-friends.png");
+              icon = require("../../assets/images/bottomBar/sm-solid-friends.png");
             } else if (route.name === "Explore") {
-              icon = require("../assets/images/bottomBar/ios-compass.png");
+              icon = require("../../assets/images/bottomBar/ios-compass.png");
             }
             const tintColor = focused ? colors.accent : colors.text;
             return <Image source={icon} style={{ tintColor: tintColor }} />;
