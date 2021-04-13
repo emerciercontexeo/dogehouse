@@ -164,7 +164,7 @@
       "tryAgain": "Try Again"
     },
     "keyboardShortcuts": {
-      "setKeybind": "Det Keybind",
+      "setKeybind": "Set Keybind",
       "listening": "Listening...",
       "toggleMuteKeybind": "Toggle mute keybind",
       "toggleOverlayKeybind": "Toggle overlay keybind",
@@ -175,7 +175,7 @@
     },
     "upcomingRoomsCard": {
       "upcomingRooms": "Upcoming rooms",
-      "exploreMoreRooms": "Explore More Rooms"
+      "exploreMoreRooms": "Explore more rooms"
     },
     "addToCalendar": {
       "add": "Add to Calendar"
